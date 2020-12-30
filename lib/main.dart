@@ -2,11 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'screens/Home/home.dart';
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final String title = 'Flutter Firebase Example';
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,32 +21,13 @@ class MyApp extends StatelessWidget {
         typography: Typography.material2018(platform: defaultTargetPlatform),
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(title: 'Flutter Firebase Example'),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-  final String title;
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
+      home: Center(
         child: FutureBuilder(
           future: _initialization,
           builder: (context, snapshot) {
             if (snapshot.hasError) return Text('An error occured');
             if (snapshot.connectionState == ConnectionState.done) {
-              return Text(
-                'Firebase Loaded',
-                style: Theme.of(context).textTheme.bodyText1,
-              );
+              return Home();
             }
 
             return CircularProgressIndicator(strokeWidth: 8);
