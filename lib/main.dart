@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'screens/Home/home.dart';
+import 'screens/home/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasError) return Text('An error occured');
             if (snapshot.connectionState == ConnectionState.done) {
-              return Home();
+              return HomeScreen();
             }
 
             return CircularProgressIndicator(strokeWidth: 8);

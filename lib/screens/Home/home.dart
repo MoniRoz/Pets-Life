@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pets_life/services/firebase_functions.dart';
 
-class Home extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
+  final _fruits =
+      FirebaseFunctionService.instance.call<List<dynamic>>("fruitsList");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +13,7 @@ class Home extends StatelessWidget {
       ),
       body: Center(
         child: FutureBuilder(
-          future: FirebaseFunctionService.instance.getFruits(),
+          future: _fruits,
           initialData: [],
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
