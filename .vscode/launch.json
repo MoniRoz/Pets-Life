@@ -5,22 +5,39 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "[DEV] pets_life",
+      "name": "[DEV ANDROID] pets_life",
       "request": "launch",
       "type": "dart",
+      "deviceId": "emulator-5554",
+      "args": [
+        "--dart-define",
+        "ENVIRONMENT=development",
+      ]
+    }, {
+      "name": "[DEV IOS] pets_life",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "6F3D644A-C54A-4F0B-97B5-6917B2957B78",
       "args": [
         "--dart-define",
         "ENVIRONMENT=development",
       ]
     },
     {
-      "name": "[PROD] pets_life",
+      "name": "[DEV WEB] pets_life",
       "request": "launch",
       "type": "dart",
+      "deviceId": "chrome",
       "args": [
         "--dart-define",
-        "ENVIRONMENT=production",
+        "ENVIRONMENT=development",
       ]
+    },
+  ],
+  "compounds": [
+    {
+      "name": "[DEV ALL DEVICES] pets_life",
+      "configurations": ["[DEV ANDROID] pets_life", "[DEV IOS] pets_life", "[DEV WEB] pets_life"]
     }
   ]
 }
