@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pets_life/constants/assets_paths.dart' show IMAGES_PATH;
 
 import 'auth_controller.dart';
 
@@ -11,7 +12,7 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: 'Pets Life',
-      logo: 'assets/images/ecorp-lightblue.png',
+      logo: '$IMAGES_PATH/ecorp-lightblue.png',
       onLogin: _controller.loginUser,
       onSignup: _controller.registerUser,
       onRecoverPassword: _controller.recoverPassword,

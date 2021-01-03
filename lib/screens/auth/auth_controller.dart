@@ -16,7 +16,7 @@ class AuthController {
       return 'Oops something whent wrong!';
     }
 
-    return null;
+    return Future.value(null);
   }
 
   Future<String> registerUser(LoginData data) async {
@@ -31,10 +31,10 @@ class AuthController {
       return 'Oops something whent wrong!';
     }
 
-    return null;
+    return Future.value(null);
   }
 
   Future<String> recoverPassword(String name) {
-    return null;
+    return Future.value(null);
   }
 }

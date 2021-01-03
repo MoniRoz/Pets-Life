@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
         title: Text("Firebase fruits list"),
       ),
       body: Center(
-        child: FutureBuilder(
+        child: FutureBuilder<List<dynamic>>(
           future: _fruits,
           initialData: [],
           builder: (_, snapshot) {
@@ -21,19 +21,22 @@ class HomeScreen extends StatelessWidget {
             }
 
             final fruits = snapshot.hasData ? snapshot.data : [];
-            if (fruits.length == 0) return Text("There are no fruits");
-            return ListView.builder(
-              itemCount: fruits.length,
-              itemBuilder: (_, index) {
-                return Card(
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-                    title: Text('${fruits[index]}'),
-                    trailing: Icon(Icons.more_vert),
-                  ),
-                );
-              },
-            );
+            if (fruits is List<dynamic> && fruits.length > 0) {
+              return ListView.builder(
+                itemCount: fruits.length,
+                itemBuilder: (_, index) {
+                  return Card(
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                      title: Text('${fruits[index]}'),
+                      trailing: Icon(Icons.more_vert),
+                    ),
+                  );
+                },
+              );
+            }
+
+            return Text("There are no fruits");
           },
         ),
       ),
