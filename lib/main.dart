@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pets_life/core/splash_screen.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
 
-void main() => runApp(CustomSplashScreen());
+import 'core/app_module.dart';
+
+void main() {
+  configureApp();
+  runApp(ModularApp(module: AppModule()));
+}
