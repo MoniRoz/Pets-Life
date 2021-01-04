@@ -1,14 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:pets_life/core/app_widget.dart';
 
-class CustomSplashScreen extends StatelessWidget {
+class LoadingScreen extends StatelessWidget {
+  LoadingScreen({@required this.child});
+  final Widget child;
+
   Future<Widget> initalize() async {
     await Future.wait([
       Firebase.initializeApp(),
       Future.delayed(const Duration(seconds: 3)),
     ]);
-    return AppWidget();
+
+    return child;
   }
 
   @override
@@ -20,12 +23,10 @@ class CustomSplashScreen extends StatelessWidget {
 
         return Directionality(
           textDirection: TextDirection.ltr,
-          child: Expanded(
-            child: Center(
-              child: snapshot.hasError
-                  ? Text("An error occured")
-                  : CircularProgressIndicator(),
-            ),
+          child: Center(
+            child: snapshot.hasError
+                ? Text("An error occured")
+                : CircularProgressIndicator(),
           ),
         );
       },

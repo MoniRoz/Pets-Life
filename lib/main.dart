@@ -6,5 +6,6 @@ import 'core/app_module.dart';
 
 void main() {
   configureApp();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(ModularApp(module: AppModule()));
 }
