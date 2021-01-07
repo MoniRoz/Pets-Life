@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart' show required;
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pets_life/constants/routes.dart' show HOME_ROUTE;
 
 import 'package:pets_life/stores/user_store.dart';
 
@@ -10,13 +9,13 @@ enum UserInAppGuardedType {
 }
 
 class UserInAppGuard implements RouteGuard {
-  final UserStore _userStore = Modular.get<UserStore>();
-  final UserInAppGuardedType allowAccessForUser;
   final String onGuardAccessDenideRoute;
+  final UserInAppGuardedType allowAccessForUser;
+  final UserStore _userStore = Modular.get<UserStore>();
 
   UserInAppGuard({
     @required this.allowAccessForUser,
-    this.onGuardAccessDenideRoute = HOME_ROUTE,
+    @required this.onGuardAccessDenideRoute,
   });
 
   @override

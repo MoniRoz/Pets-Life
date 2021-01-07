@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_login/flutter_login.dart' show LoginData;
-import 'package:pets_life/services/firebase_auth.dart';
 
 class AuthController {
-  final FirebaseAuth _firebaseAuth = FirebaseAuthService.auth;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<String> loginUser(LoginData data) async {
     try {

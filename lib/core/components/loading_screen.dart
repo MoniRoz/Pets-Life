@@ -1,18 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import 'package:pets_life/core/app_widget.dart';
+import 'package:pets_life/stores/user_store.dart';
 
 class LoadingScreen extends StatelessWidget {
-  final Widget child;
-
-  LoadingScreen({@required this.child});
-
   Future<Widget> initalize() async {
     await Future.wait([
-      Firebase.initializeApp(),
+      Firebase.initializeApp().then(
+        (_) async {
+          await Modular.get<UserStore>().initialize();
+        },
+      ),
       Future.delayed(const Duration(seconds: 3)),
     ]);
 
-    return child;
+    return AppWidget();
   }
 
   @override
