@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:pets_life/constants/routes.dart' show AUTH_ROUTE;
 import 'package:pets_life/stores/user_store.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -17,37 +15,20 @@ class AppDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
+          if (_userStore.isUser) ...[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Welcome, ${_userStore.currentUser.email}'),
             ),
-            child: Observer(
-              builder: (_) {
-                if (!_userStore.isUser) return Text('Drawer Header');
-                return Text('Welcome, ${_userStore.currentUser.email}');
+            ListTile(
+              title: Text('Sign Out'),
+              onTap: () {
+                FirebaseAuth.instance.signOut();
               },
             ),
-          ),
-          Observer(
-            builder: (_) {
-              if (_userStore.isUser) {
-                return ListTile(
-                  title: Text('Sign Out'),
-                  onTap: () {
-                    Modular.to.pop();
-                    FirebaseAuth.instance.signOut();
-                  },
-                );
-              }
-
-              return ListTile(
-                title: Text('Login/Register'),
-                onTap: () {
-                  Modular.to.pushNamed(AUTH_ROUTE);
-                },
-              );
-            },
-          ),
+          ],
         ],
       ),
     );

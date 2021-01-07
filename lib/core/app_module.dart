@@ -7,6 +7,7 @@ import 'package:pets_life/screens/home/home_module.dart';
 import 'package:pets_life/stores/user_store.dart';
 import 'package:pets_life/screens/auth/auth_module.dart';
 import 'package:pets_life/screens/not_found/not_found.dart';
+import 'package:pets_life/utils/route_guards/user_in_app_guard.dart';
 
 class AppModule extends MainModule {
   @override
@@ -20,10 +21,22 @@ class AppModule extends MainModule {
         ModuleRoute(
           AUTH_ROUTE,
           module: AuthModule(),
+          guards: [
+            UserInAppGuard(
+              allowAccessForUser: UserInAppGuardedType.signOut,
+              onGuardAccessDenideRoute: HOME_ROUTE,
+            ),
+          ],
         ),
         ModuleRoute(
           HOME_ROUTE,
           module: HomeModule(),
+          guards: [
+            UserInAppGuard(
+              allowAccessForUser: UserInAppGuardedType.signIn,
+              onGuardAccessDenideRoute: AUTH_ROUTE,
+            ),
+          ],
         ),
         ChildRoute(
           '**',

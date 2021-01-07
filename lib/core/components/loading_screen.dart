@@ -8,12 +8,12 @@ import 'package:pets_life/stores/user_store.dart';
 class LoadingScreen extends StatelessWidget {
   Future<Widget> initalize() async {
     await Future.wait([
+      Future.delayed(const Duration(seconds: 3)),
       Firebase.initializeApp().then(
         (_) async {
           await Modular.get<UserStore>().initialize();
         },
       ),
-      Future.delayed(const Duration(seconds: 3)),
     ]);
 
     return AppWidget();
