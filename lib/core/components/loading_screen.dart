@@ -2,8 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatelessWidget {
-  LoadingScreen({@required this.child});
   final Widget child;
+
+  LoadingScreen({@required this.child});
 
   Future<Widget> initalize() async {
     await Future.wait([

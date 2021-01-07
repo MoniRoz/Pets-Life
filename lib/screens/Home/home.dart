@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pets_life/services/firebase_functions.dart';
+import 'package:pets_life/widgets/app_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   final _fruits =
@@ -9,8 +10,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Firebase fruits list"),
+        title: Text('List of fruits'),
       ),
+      drawer: AppDrawer(),
       body: Center(
         child: FutureBuilder<List<dynamic>>(
           future: _fruits,

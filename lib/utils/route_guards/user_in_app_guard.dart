@@ -2,29 +2,32 @@ import 'package:flutter/foundation.dart' show required;
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pets_life/constants/routes.dart' show HOME_ROUTE;
 
-import 'package:pets_life/models/user_store.dart';
+import 'package:pets_life/stores/user_store.dart';
 
-enum UserGuardedType {
+enum UserInAppGuardedType {
   signIn,
   signOut,
 }
 
-class UserGuard implements RouteGuard {
-  final UserStore _store = Modular.get<UserStore>();
-  final UserGuardedType allowAccessForUser;
+class UserInAppGuard implements RouteGuard {
+  final UserStore _userStore = Modular.get<UserStore>();
+  final UserInAppGuardedType allowAccessForUser;
   final String onGuardAccessDenideRoute;
 
-  UserGuard({
+  UserInAppGuard({
     @required this.allowAccessForUser,
     this.onGuardAccessDenideRoute = HOME_ROUTE,
   });
 
   @override
   Future<bool> canActivate(String url, ModularRoute router) {
-    if (allowAccessForUser == UserGuardedType.signOut && _store.user == null) {
+    if (_userStore.isUser &&
+        allowAccessForUser == UserInAppGuardedType.signIn) {
       return Future.value(true);
     }
-    if (allowAccessForUser == UserGuardedType.signIn && _store.user != null) {
+
+    if (!_userStore.isUser &&
+        allowAccessForUser == UserInAppGuardedType.signOut) {
       return Future.value(true);
     }
 

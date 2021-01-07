@@ -9,16 +9,30 @@ part of 'user_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$UserStore on _UserStore, Store {
+  Computed<User> _$currentUserComputed;
+
+  @override
+  User get currentUser =>
+      (_$currentUserComputed ??= Computed<User>(() => super.currentUser,
+              name: '_UserStore.currentUser'))
+          .value;
+  Computed<bool> _$isUserComputed;
+
+  @override
+  bool get isUser => (_$isUserComputed ??=
+          Computed<bool>(() => super.isUser, name: '_UserStore.isUser'))
+      .value;
+
   final _$userAtom = Atom(name: '_UserStore.user');
 
   @override
-  User get user {
+  ObservableStream<User> get user {
     _$userAtom.reportRead();
     return super.user;
   }
 
   @override
-  set user(User value) {
+  set user(ObservableStream<User> value) {
     _$userAtom.reportWrite(value, super.user, () {
       super.user = value;
     });
@@ -27,7 +41,9 @@ mixin _$UserStore on _UserStore, Store {
   @override
   String toString() {
     return '''
-user: ${user}
+user: ${user},
+currentUser: ${currentUser},
+isUser: ${isUser}
     ''';
   }
 }
