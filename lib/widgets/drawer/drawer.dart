@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pets_life/widgets/drawer/components/footer.dart';
 
 import 'components/header.dart';
-import 'components/naviagtion.dart';
+import 'components/body.dart';
 import 'components/settings.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -15,11 +15,11 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           Header(),
-          Settings(),
+          ...settingsSection,
           Divider(),
-          Naviagtion(),
+          ...exploreAppSection,
           Divider(),
-          Footer(),
+          ...footerSection,
         ],
       ),
     );
