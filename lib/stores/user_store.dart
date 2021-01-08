@@ -18,5 +18,5 @@ abstract class _UserStore with Store {
   User get currentUser => this.user?.value ?? FirebaseAuth.instance.currentUser;
 
   @computed
-  bool get isUser => this.currentUser != null;
+  String get fullName => '${this.currentUser?.displayName ?? 'Gall Anonim'}';
 }

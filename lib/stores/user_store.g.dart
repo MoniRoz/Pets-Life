@@ -16,11 +16,11 @@ mixin _$UserStore on _UserStore, Store {
       (_$currentUserComputed ??= Computed<User>(() => super.currentUser,
               name: '_UserStore.currentUser'))
           .value;
-  Computed<bool> _$isUserComputed;
+  Computed<String> _$fullNameComputed;
 
   @override
-  bool get isUser => (_$isUserComputed ??=
-          Computed<bool>(() => super.isUser, name: '_UserStore.isUser'))
+  String get fullName => (_$fullNameComputed ??=
+          Computed<String>(() => super.fullName, name: '_UserStore.fullName'))
       .value;
 
   final _$userAtom = Atom(name: '_UserStore.user');
@@ -43,7 +43,7 @@ mixin _$UserStore on _UserStore, Store {
     return '''
 user: ${user},
 currentUser: ${currentUser},
-isUser: ${isUser}
+fullName: ${fullName}
     ''';
   }
 }

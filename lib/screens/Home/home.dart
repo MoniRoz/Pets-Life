@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:pets_life/services/firebase_functions.dart';
-import 'package:pets_life/widgets/app_drawer.dart';
+import 'package:pets_life/widgets/drawer/drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   final _fruits =

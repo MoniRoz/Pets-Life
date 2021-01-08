@@ -19,9 +19,9 @@ class _AppWidgetState extends State<AppWidget> {
   void initState() {
     super.initState();
     _disposer = reaction(
-      (_) => widget._userStore.isUser,
-      (isUser) {
-        if (!isUser) Modular.to.pushReplacementNamed(AUTH_ROUTE);
+      (_) => widget._userStore.currentUser,
+      (user) {
+        if (user == null) Modular.to.pushReplacementNamed(AUTH_ROUTE);
       },
     );
   }
