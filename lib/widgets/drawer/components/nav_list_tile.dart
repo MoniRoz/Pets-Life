@@ -22,7 +22,12 @@ class NavListTile extends StatelessWidget {
       selectedTileColor: Theme.of(context).primaryColor.withOpacity(0.2),
       leading: Icon(icon),
       onTap: () {
-        if (!isActive) Modular.to.pushNamed(route);
+        if (!isActive) {
+          Modular.to
+            ..pop()
+            ..pushNamed(route);
+        }
+        ;
       },
     );
   }

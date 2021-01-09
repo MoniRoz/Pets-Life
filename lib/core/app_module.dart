@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pets_life/constants/routes.dart';
 import 'package:pets_life/core/components/loading_screen.dart';
 import 'package:pets_life/screens/home/home_module.dart';
+import 'package:pets_life/screens/parks/parks_module.dart';
 import 'package:pets_life/screens/vets/vets_module.dart';
 import 'package:pets_life/stores/user_store.dart';
 import 'package:pets_life/screens/auth/auth_module.dart';
@@ -42,12 +43,10 @@ class AppModule extends MainModule {
         ModuleRoute(
           VETS_ROUTE,
           module: VetsModule(),
-          guards: [
-            UserInAppGuard(
-              allowAccessForUser: UserInAppGuardedType.signIn,
-              onGuardAccessDenideRoute: AUTH_ROUTE,
-            ),
-          ],
+        ),
+        ModuleRoute(
+          PARKS_ROUTE,
+          module: ParksModule(),
         ),
         ChildRoute(
           '**',

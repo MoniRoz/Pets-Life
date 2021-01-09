@@ -13,9 +13,9 @@ final exploreAppSection = <Widget>[
     icon: Icons.home,
   ),
   NavListTile(
-    title: "Playgrounds",
-    route: "",
-    icon: Icons.pets,
+    title: "Parks",
+    route: PARKS_ROUTE,
+    icon: Icons.park,
   ),
   NavListTile(
     title: "Vets",

@@ -6,7 +6,7 @@ import 'package:pets_life/utils/route_guards/user_in_app_guard.dart';
 import 'details/details_screen.dart';
 import 'overview/overview_screen.dart';
 
-class VetsModule extends ChildModule {
+class ParksModule extends ChildModule {
   @override
   List<Bind> get binds => [];
 
