@@ -20,12 +20,12 @@ class UserInAppGuard implements RouteGuard {
 
   @override
   Future<bool> canActivate(String url, ModularRoute router) {
-    if (_userStore.currentUser != null &&
+    if (_userStore.user != null &&
         allowAccessForUser == UserInAppGuardedType.signIn) {
       return Future.value(true);
     }
 
-    if (_userStore.currentUser == null &&
+    if (_userStore.user == null &&
         allowAccessForUser == UserInAppGuardedType.signOut) {
       return Future.value(true);
     }

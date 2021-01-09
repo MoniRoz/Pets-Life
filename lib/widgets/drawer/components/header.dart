@@ -25,7 +25,7 @@ class Header extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           SizedBox(height: 5),
-          Text('${_userStore.currentUser?.email ?? ""}')
+          Text('${_userStore.user?.email ?? ""}')
         ],
       ),
     );

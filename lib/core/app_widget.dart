@@ -19,7 +19,7 @@ class _AppWidgetState extends State<AppWidget> {
   void initState() {
     super.initState();
     _disposer = reaction(
-      (_) => widget._userStore.currentUser,
+      (_) => widget._userStore.user,
       (user) {
         if (user == null) Modular.to.pushReplacementNamed(AUTH_ROUTE);
       },
@@ -36,7 +36,7 @@ class _AppWidgetState extends State<AppWidget> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Firebase',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.teal),
       initialRoute: HOME_ROUTE,
     ).modular();
   }
